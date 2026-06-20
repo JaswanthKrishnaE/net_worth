@@ -1,6 +1,6 @@
 import { AppSpacer, Screen } from "@/components/common";
 
-import { ProfileSection, ThemeSection } from "@/components/settings";
+import { ProfileSection, ThemeSection , AssetSection } from "@/components/settings";
 
 export default function Settings() {
   return (
@@ -10,6 +10,10 @@ export default function Settings() {
       <AppSpacer size={16} />
 
       <ThemeSection />
+
+      <AppSpacer size={16} />
+
+      <AssetSection />
     </Screen>
   );
 }

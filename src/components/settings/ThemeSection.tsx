@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { StyleSheet, Switch, View } from "react-native";
 
 import { AppCard, AppText } from "@/components/common";
@@ -7,13 +6,8 @@ import { useThemeStore } from "@/store/theme-store";
 export default function ThemeSection() {
   const theme = useThemeStore((state) => state.theme);
   const toggleTheme = useThemeStore((state) => state.toggleTheme);
-  const [isDark, setIsDark] = useState(false);
 
-  useEffect(() => {
-    setIsDark(theme === "dark");
-  }, [theme]);
-
-  const handleToggle = async (value: boolean) => {
+  const handleToggle = async () => {
     await toggleTheme();
   };
 
@@ -22,10 +16,15 @@ export default function ThemeSection() {
       <View>
         <AppText>Dark Theme</AppText>
 
-        <AppText secondary>Enable dark mode</AppText>
+        <AppText secondary>
+          Enable dark mode
+        </AppText>
       </View>
 
-      <Switch value={isDark} onValueChange={handleToggle} />
+      <Switch
+        value={theme === "dark"}
+        onValueChange={handleToggle}
+      />
     </AppCard>
   );
 }

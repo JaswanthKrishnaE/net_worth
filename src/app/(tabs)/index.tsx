@@ -58,7 +58,7 @@ export default function Index() {
                 />
             </View>
             <AppSpacer size={12} />
-            <AssetAllocationCard />
+            {/* <AssetAllocationCard /> */}
         </View>
     </Screen>
   );
