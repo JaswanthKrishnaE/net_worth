@@ -1,11 +1,8 @@
 import { useEffect, useState, useMemo } from "react";
 import { Alert } from "react-native";
 
-import { AppButton, AppSpacer, Screen } from "@/components/common";
-
+import { AppButton, AppSpacer, Screen, AppFormModal } from "@/components/common";
 import AssetCard from "@/components/assets/AssetCard";
-import AssetFormModal from "@/components/assets/AssetFormModal";
-
 import { useAssetsStore } from "@/store/assets.store";
 
 export default function AssetsScreen() {
@@ -98,8 +95,11 @@ export default function AssetsScreen() {
 
       <AppButton title="Add Asset" onPress={openAddModal} />
 
-      <AssetFormModal
+      {/* Universal Modal Implementation */}
+      <AppFormModal
         visible={modalVisible}
+        title={isEditing ? "Edit Asset" : "Add Asset"}
+        placeholder="Asset Name"
         value={assetName}
         isEditing={isEditing}
         onChange={setAssetName}

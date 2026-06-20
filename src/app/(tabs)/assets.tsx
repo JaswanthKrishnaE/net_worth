@@ -3,7 +3,6 @@ import { useState } from "react";
 import { AppButton, AppSpacer, Screen } from "@/components/common";
 
 import AllocationCard from "@/components/assets/AllocationCard";
-import HorizontalSelector from "@/components/assets/HorizontalSelector";
 import InstrumentCard from "@/components/assets/InstrumentCard";
 
 type ViewType = "assets" | "entity" | "broker";

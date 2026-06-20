@@ -1,22 +1,7 @@
-﻿import {
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
-
+﻿import { useEffect, useMemo, useState } from "react";
 import { Alert } from "react-native";
-
-import {
-  AppButton,
-  AppSpacer,
-  Screen,
-} from "@/components/common";
-
-import {
-  ProfileCard,
-  ProfileFormModal,
-} from "@/components/profile";
-
+import { AppButton, AppSpacer, Screen, AppFormModal } from "@/components/common"; // Import common modal
+import { ProfileCard } from "@/components/profile";
 import { useProfileStore } from "@/store/profile.store";
 
 export default function ProfilesScreen() {
@@ -29,40 +14,24 @@ export default function ProfilesScreen() {
     selectProfile,
   } = useProfileStore();
 
-  const [modalVisible, setModalVisible] =
-    useState(false);
-
-  const [editingProfileId, setEditingProfileId] =
-    useState<number | null>(null);
-
-  const [profileName, setProfileName] =
-    useState("");
+  const [modalVisible, setModalVisible] = useState(false);
+  const [editingProfileId, setEditingProfileId] = useState<number | null>(null);
+  const [profileName, setProfileName] = useState("");
 
   useEffect(() => {
     loadProfiles();
   }, []);
 
-  const isEditing =
-    editingProfileId !== null;
+  const isEditing = editingProfileId !== null;
 
   const selectedProfile = useMemo(
-    () =>
-      profiles.find(
-        (p) =>
-          p.id ===
-          editingProfileId
-      ),
-    [
-      editingProfileId,
-      profiles,
-    ]
+    () => profiles.find((p) => p.id === editingProfileId),
+    [editingProfileId, profiles]
   );
 
   useEffect(() => {
     if (selectedProfile) {
-      setProfileName(
-        selectedProfile.name
-      );
+      setProfileName(selectedProfile.name);
     }
   }, [selectedProfile]);
 
@@ -72,9 +41,7 @@ export default function ProfilesScreen() {
     setModalVisible(true);
   };
 
-  const openEditModal = (
-    id: number
-  ) => {
+  const openEditModal = (id: number) => {
     setEditingProfileId(id);
     setModalVisible(true);
   };
@@ -86,83 +53,53 @@ export default function ProfilesScreen() {
   };
 
   const handleSave = async () => {
-    const trimmed =
-      profileName.trim();
-
+    const trimmed = profileName.trim();
     if (!trimmed) {
-      Alert.alert(
-        "Invalid Name"
-      );
-
+      Alert.alert("Invalid Name");
       return;
     }
 
-    if (
-      isEditing &&
-      editingProfileId
-    ) {
-      await updateProfile(
-        editingProfileId,
-        trimmed
-      );
+    if (isEditing && editingProfileId) {
+      await updateProfile(editingProfileId, trimmed);
     } else {
-      await createProfile(
-        trimmed
-      );
+      await createProfile(trimmed);
     }
-
     closeModal();
   };
 
-  const handleDelete = (
-    id: number
-  ) => {
-    Alert.alert(
-      "Delete Profile",
-      "Are you sure?",
-      [
-        {
-          text: "Cancel",
-          style: "cancel",
-        },
-        {
-          text: "Delete",
-          style: "destructive",
-          onPress: () =>
-            deleteProfile(id),
-        },
-      ]
-    );
+  const handleDelete = (id: number) => {
+    Alert.alert("Delete Profile", "Are you sure?", [
+      { text: "Cancel", style: "cancel" },
+      {
+        text: "Delete",
+        style: "destructive",
+        onPress: () => deleteProfile(id),
+      },
+    ]);
   };
 
   return (
     <Screen>
       {profiles.map((profile) => (
-      <ProfileCard
-        key={profile.id}
-        profile={profile}
-        selected={profile.isDefault === 1}
-        onSelect={() =>
-          selectProfile(profile.id)
-        }
-        onEdit={() =>
-          openEditModal(profile.id)
-        }
-        onDelete={() =>
-          handleDelete(profile.id)
-        }
-      />
+        <ProfileCard
+          key={profile.id}
+          profile={profile}
+          selected={profile.isDefault === 1}
+          onSelect={() => selectProfile(profile.id)}
+          onEdit={() => openEditModal(profile.id)}
+          onDelete={() => handleDelete(profile.id)}
+        />
       ))}
 
       <AppSpacer size={16} />
 
-      <AppButton
-        title="Add Profile"
-        onPress={openAddModal}
-      />
+      <AppButton title="Add Profile" onPress={openAddModal} />
 
-      <ProfileFormModal
+      {/* Using the Universal Modal */}
+      <AppFormModal
         visible={modalVisible}
+        title={isEditing ? "Edit Profile" : "Add Profile"}
+        placeholder="Profile Name"
         value={profileName}
         isEditing={isEditing}
         onChange={setProfileName}

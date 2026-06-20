@@ -1,6 +1,6 @@
 import { AppSpacer, Screen } from "@/components/common";
 
-import { ProfileSection, ThemeSection , AssetSection } from "@/components/settings";
+import { ProfileSection, ThemeSection , AssetSection , BrokerSection , EntitySection} from "@/components/settings";
 
 export default function Settings() {
   return (
@@ -14,6 +14,14 @@ export default function Settings() {
       <AppSpacer size={16} />
 
       <AssetSection />
+
+      <AppSpacer size={16} />
+
+      <BrokerSection />
+
+      <AppSpacer size={16} />
+
+      <EntitySection />
     </Screen>
   );
 }

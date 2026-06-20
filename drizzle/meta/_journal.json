@@ -8,6 +8,13 @@
       "when": 1781924079342,
       "tag": "0000_right_dorian_gray",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1781948387782,
+      "tag": "0001_green_lester",
+      "breakpoints": true
     }
   ]
 }

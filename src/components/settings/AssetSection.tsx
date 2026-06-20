@@ -1,38 +1,25 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import { Pressable, StyleSheet, View } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 
 import { AppCard, AppText } from "@/components/common";
 import { useTheme } from "@/hooks/use-theme";
-import { useAssetsStore } from "@/store/assets.store";
 
 export default function AssetsSection() {
   const colors = useTheme();
   const router = useRouter();
 
-  const assets = useAssetsStore((state) => state.assets);
-
-  const handlePress = () => {
-    router.push("/settings/AssetsScreen");
-  };
+  const handlePress = () => router.push("/settings/AssetsScreen");
 
   return (
     <Pressable onPress={handlePress}>
       <AppCard style={styles.card}>
-        <View>
-          <AppText secondary>Assets</AppText>
-
-          <AppText style={styles.name}>
-            {assets.length > 0
-              ? `${assets.length} Assets`
-              : "No Assets"}
-          </AppText>
-        </View>
+        <AppText style={styles.name}>Assets</AppText>
 
         <Ionicons
           name="chevron-forward"
           size={20}
-          color={colors.text}
+          color={colors.textSecondary}
         />
       </AppCard>
     </Pressable>
@@ -45,7 +32,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
-
   name: {
     fontSize: 18,
     fontWeight: "700",

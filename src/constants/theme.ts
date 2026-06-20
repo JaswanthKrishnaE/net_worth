@@ -3,28 +3,28 @@
  * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
  */
 
-import '@/global.css';
 
 import { Platform } from 'react-native';
 
+// constants/theme.ts
 export const Colors = {
   light: {
-    text: '#000000',
-    background: '#ffffff',
-    backgroundElement: '#F0F0F3',
-    backgroundSelected: '#E0E1E6',
-    textSecondary: '#60646C',
+    text: '#11181C',          // Deep Slate, not harsh black
+    background: '#F4F5F7',    // Soft off-white, reduces eye strain
+    backgroundElement: '#FFFFFF', // Pure white for cards/surfaces
+    backgroundSelected: '#EBEBEF', // Subtle gray for active states
+    textSecondary: '#6B7280', // Modern slate-gray
     success: "#16A34A",
     danger: "#DC2626",
     warning: "#F59E0B",
     info: "#2563EB",
   },
   dark: {
-    text: '#ffffff',
-    background: '#000000',
-    backgroundElement: '#212225',
-    backgroundSelected: '#2E3135',
-    textSecondary: '#B0B4BA',
+    text: '#F4F4F5',          // Soft white, not harsh white
+    background: '#09090B',    // Near-black, very premium
+    backgroundElement: '#18181B', // Deep grey for cards
+    backgroundSelected: '#27272A', // Subtle highlight for dark mode
+    textSecondary: '#A1A1AA', // Muted silver
     success: "#22C55E",
     danger: "#EF4444",
     warning: "#FBBF24",
@@ -77,9 +77,17 @@ export const Radius = {
 } as const;
 
 export const Shadows = {
-  card: {
-    elevation: 2,
-  },
+  card: Platform.select({
+    ios: {
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.15,
+      shadowRadius: 10,
+    },
+    android: {
+      elevation: 5,
+    },
+  }),
 };
 export const BottomTabInset = Platform.select({ ios: 50, android: 80 }) ?? 0;
 export const MaxContentWidth = 800;

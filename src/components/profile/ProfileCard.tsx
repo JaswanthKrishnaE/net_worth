@@ -1,11 +1,8 @@
-import { Pressable, StyleSheet, View } from "react-native";
+import { Pressable, StyleSheet, View, Animated } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { Swipeable } from "react-native-gesture-handler";
 
-import {
-  AppCard,
-  AppText,
-} from "@/components/common";
-
+import { AppCard, AppText } from "@/components/common";
 import { useTheme } from "@/hooks/use-theme";
 import { Profile } from "@/store/profile.store";
 
@@ -26,68 +23,75 @@ export default function ProfileCard({
 }: Props) {
   const colors = useTheme();
 
-  return (
-    <AppCard style={styles.card}>
-      <View style={styles.row}>
-        <Pressable
-          onPress={onSelect}
-          style={styles.profileLabel}
-        >
-          <AppText>
-            {selected ? "✓ " : ""}
-            {profile.name}
-          </AppText>
+  const renderRightActions = (
+    progress: Animated.AnimatedInterpolation<number>,
+    dragX: Animated.AnimatedInterpolation<number>
+  ) => {
+    return (
+      <View style={styles.rightActionsContainer}>
+        <Pressable onPress={onEdit} style={[styles.actionButton, { backgroundColor: colors.backgroundSelected }]}>
+          <Ionicons name="create" size={20} color={colors.text} />
         </Pressable>
-
-        <View style={styles.actions}>
-          <Pressable
-            onPress={onEdit}
-            style={styles.iconButton}
-          >
-            <Ionicons
-              name="create-outline"
-              size={18}
-              color={colors.text}
-            />
-          </Pressable>
-
-          <Pressable
-            onPress={onDelete}
-            style={styles.iconButton}
-          >
-            <Ionicons
-              name="trash-outline"
-              size={18}
-              color={colors.danger}
-            />
-          </Pressable>
-        </View>
+        <Pressable onPress={onDelete} style={[styles.actionButton, { backgroundColor: colors.danger }]}>
+          <Ionicons name="trash" size={20} color="#fff" />
+        </Pressable>
       </View>
-    </AppCard>
+    );
+  };
+
+  return (
+    <Swipeable renderRightActions={renderRightActions}>
+      <AppCard style={styles.card}>
+        {/* Added justifyContent: space-between to row style */}
+        <Pressable onPress={onSelect} style={styles.row}>
+          <AppText style={styles.name}>{profile.name}</AppText>
+          
+          {selected && (
+            <View style={[styles.activeChip, { backgroundColor: colors.success }]}>
+              <AppText style={styles.activeText}>Active</AppText>
+            </View>
+          )}
+        </Pressable>
+      </AppCard>
+    </Swipeable>
   );
 }
 
 const styles = StyleSheet.create({
   card: {
     marginBottom: 8,
+    padding: 0, // Padding handled by row
   },
-
   row: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-between", // Pushes name left, chip right
     alignItems: "center",
+    padding: 16,
   },
-
-  profileLabel: {
-    flex: 1,
+  name: {
+    fontSize: 16,
+    fontWeight: "600",
   },
-
-  actions: {
+  activeChip: {
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 16, // Pill shape
+  },
+  activeText: {
+    fontSize: 12,
+    color: "#fff",
+    fontWeight: "700",
+  },
+  rightActionsContainer: {
     flexDirection: "row",
-    gap: 10,
+    marginBottom: 8,
   },
-
-  iconButton: {
-    padding: 8,
-  },
+  actionButton: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: 70,
+    height: '100%',
+    borderRadius: 12,
+    marginLeft: 8,
+  }
 });
