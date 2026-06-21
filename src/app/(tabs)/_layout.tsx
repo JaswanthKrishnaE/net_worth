@@ -86,7 +86,19 @@ const colors = useTheme();
           ),
         }}
       />
-
+      <Tabs.Screen
+        name="transactions"
+        options={{
+          title: "Transactions",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons
+              name="receipt-outline" // Or "list-outline" for a list view
+              size={size}
+              color={color}
+            />
+          ),
+        }}
+      />
       <Tabs.Screen
         name="reports"
         options={{

@@ -71,6 +71,7 @@ if (!isLoading && profiles.length === 0) {
         />
         <Stack.Screen name="settings/BrokersScreen" options={{ title: "Brokers" }} />
         <Stack.Screen name="settings/EntitiesScreen" options={{ title: "Entities" }} />
+        <Stack.Screen name="settings/TransactionStatusScreen" options={{ title: "Transaction Status" }} />
       </Stack>
     </GestureHandlerRootView>
 
