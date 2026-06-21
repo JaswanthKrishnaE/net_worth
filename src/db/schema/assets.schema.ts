@@ -13,3 +13,13 @@ export const assets = sqliteTable(
     name: text("name").notNull(),
   }
 );
+
+export const subClass = sqliteTable(
+  "sub_classes",
+  {
+    id: integer("id")
+      .primaryKey({ autoIncrement: true }),
+
+    name: text("name").notNull(),
+  }
+);

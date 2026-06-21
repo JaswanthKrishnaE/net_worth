@@ -44,6 +44,8 @@
     "@types/react": "~19.2.2",
     "babel-plugin-inline-import": "^3.0.0",
     "better-sqlite3": "^12.11.1",
+    "tsconfig-paths": "^4.2.0",
+    "tsx": "^4.22.4",
     "typescript": "~6.0.3"
   },
   "scripts": {
@@ -54,7 +56,8 @@
     "web": "expo start --web",
     "lint": "expo lint",
     "db:generate": "drizzle-kit generate",
-    "db:migrate": "drizzle-kit migrate"
+    "db:migrate": "drizzle-kit migrate",
+    "db:seed": "tsx -r tsconfig-paths/register src/db/seed.ts"
   },
   "private": true
 }

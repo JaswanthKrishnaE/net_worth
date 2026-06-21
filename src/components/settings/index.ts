@@ -4,3 +4,4 @@ export {default as AssetSection} from "./AssetSection";
 export {default as BrokerSection} from "./BrokerSection";
 export {default as EntitySection} from "./EntitySection";
 export {default as TransactionStatusSection} from "./TransactionStatusSection";
+export {default as SubClassSection} from "./SubClassSection";
