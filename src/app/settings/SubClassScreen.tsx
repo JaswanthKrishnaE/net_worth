@@ -1,6 +1,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { Alert } from "react-native";
-import { AppButton, AppSpacer, Screen, AppFormModal } from "@/components/common";
+import { AppButton, AppSpacer, Screen } from "@/components/common";
+import AppFormModal from "@/components/common/AppFormModal";
 import SubClassCard from "@/components/subclasses/SubClassCard";
 import { useSubClassStore } from "@/store/subclass.store";
 

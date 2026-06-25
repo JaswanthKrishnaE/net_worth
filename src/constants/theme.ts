@@ -18,6 +18,7 @@ export const Colors = {
     danger: "#DC2626",
     warning: "#F59E0B",
     info: "#2563EB",
+    error: "red"
   },
   dark: {
     text: '#F4F4F5',          // Soft white, not harsh white
@@ -29,6 +30,7 @@ export const Colors = {
     danger: "#EF4444",
     warning: "#FBBF24",
     info: "#3B82F6",
+    error: "red"
   },
 } as const;
 

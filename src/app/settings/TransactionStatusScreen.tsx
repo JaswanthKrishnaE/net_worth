@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Alert } from "react-native";
-import { Screen, AppButton, AppSpacer, AppFormModal } from "@/components/common";
+import { Screen, AppButton, AppSpacer } from "@/components/common";
+import AppFormModal from "@/components/common/AppFormModal";
 import { useTransactionStatusStore } from "@/store/transaction-status.store";
 import { TransactionStatusCard } from "@/components/transaction-status/TransactionStatusCard";
 

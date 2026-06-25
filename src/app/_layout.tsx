@@ -58,21 +58,17 @@ if (!isLoading && profiles.length === 0) {
           }}
         />
         <Stack.Screen
-          name="settings/ProfilesScreen"
+          name="settings"
           options={{
-            title: "Profiles",
+            headerShown: false,
           }}
         />
         <Stack.Screen
-          name="settings/AssetsScreen"
+          name="transactions/import"
           options={{
-            title: "Assets",
+            headerShown: false,
           }}
         />
-        <Stack.Screen name="settings/BrokersScreen" options={{ title: "Brokers" }} />
-        <Stack.Screen name="settings/EntitiesScreen" options={{ title: "Entities" }} />
-        <Stack.Screen name="settings/TransactionStatusScreen" options={{ title: "Transaction Status" }} />
-        <Stack.Screen name="settings/SubClassScreen" options={{ title: "Sub-Classes" }} />
       </Stack>
     </GestureHandlerRootView>
 

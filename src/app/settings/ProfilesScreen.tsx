@@ -1,6 +1,7 @@
 ﻿import { useEffect, useMemo, useState } from "react";
 import { Alert } from "react-native";
-import { AppButton, AppSpacer, Screen, AppFormModal } from "@/components/common"; // Import common modal
+import { AppButton, AppSpacer, Screen } from "@/components/common"; // Import common modal
+import AppFormModal from "@/components/common/AppFormModal";
 import { ProfileCard } from "@/components/profile";
 import { useProfileStore } from "@/store/profile.store";
 

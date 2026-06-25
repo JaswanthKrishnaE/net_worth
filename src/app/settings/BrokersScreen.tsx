@@ -3,7 +3,8 @@ import { Alert } from "react-native";
 import { Screen, AppButton, AppSpacer } from "@/components/common";
 import { useBrokersStore } from "@/store/brokers.store";
 import { BrokerCard } from "@/components/brokers/BrokerCard";
-import { AppFormModal } from "@/components/common";
+import AppFormModal from "@/components/common/AppFormModal";
+
 
 export default function BrokersScreen() {
   const { brokers, loadBrokers, createBroker, updateBroker, deleteBroker } = useBrokersStore();

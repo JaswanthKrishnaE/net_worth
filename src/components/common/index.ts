@@ -6,4 +6,3 @@ export { default as Screen } from './screen';
 export { default as SectionHeader } from './SectionHeader';
 export { default as StatItem } from './StatItem';
 export { default as AppModal } from "./AppModal";
-export { default as AppFormModal } from "./AppFormModal";

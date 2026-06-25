@@ -12,4 +12,7 @@ export const instruments = sqliteTable("instruments", {
         entityId: integer("entity_id").references(() => entities.id).notNull(),
         //large cap , mid cap , small cap
         subClassId: integer("sub_class_id").references(() => subClass.id),
+
+        //META DATA
+        metadata: text("metadata", { mode: 'json' }),
 });
